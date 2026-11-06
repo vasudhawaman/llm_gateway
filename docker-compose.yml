@@ -1,0 +1,19 @@
+services:
+  mockllm:
+    build: {context: ., args: {TARGET: mockllm}}
+    environment: {PORT: "9000", LATENCY_SCALE: "0.2"}
+  gateway:
+    build: .
+    ports: ["8080:8080"]
+    environment:
+      PORT: "8080"
+      PROVIDER_URL: http://mockllm:9000
+    depends_on: [mockllm]
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    ports: ["9090:9090"]
+    volumes: ["./prometheus.yml:/etc/prometheus/prometheus.yml:ro"]
+  grafana:
+    image: grafana/grafana:11.2.0
+    ports: ["3000:3000"]
+    depends_on: [prometheus]

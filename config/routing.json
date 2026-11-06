@@ -1,0 +1,5 @@
+{
+  "max_small_chars": 300,
+  "hard_keywords": ["prove", "step by step", "derive", "refactor", "optimize", "architecture", "debug"],
+  "costs": {"small": 1, "large": 12}
+}

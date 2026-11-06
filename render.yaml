@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: llm-gateway
+    runtime: docker
+    plan: free
+    healthCheckPath: /healthz
+    autoDeployTrigger: checksPass   # deploy only after GitHub CI is green
+    envVars:
+      - {key: LATENCY_SCALE, value: "0.3"}

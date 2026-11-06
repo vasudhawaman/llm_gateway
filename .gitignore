@@ -1,0 +1,5 @@
+bin/
+*.out
+.terraform/
+*.tfstate*
+.env
